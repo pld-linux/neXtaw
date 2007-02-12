@@ -1,5 +1,5 @@
 Summary:	neXtaw - a replacement library for the Athena
-Summary(pl):	neXtaw - zamiennik biblioteki Athena
+Summary(pl.UTF-8):   neXtaw - zamiennik biblioteki Athena
 Name:		neXtaw
 Version:	0.15.1
 Release:	0.1
@@ -17,34 +17,34 @@ is based on Xaw3d, by Kaleb Keithley and is almost 100% backward
 compatible with it. Its goal is to try to emulate the look and feel of
 the N*XTSTEP GUI.
 
-%description -l pl
-neXtaw to zamiennik biblioteki zestawu widgetów Athena (libXaw). Jest
-oparty na Xaw3d Kaleba Keithleya i jest z ni± prawie w 100% wstecznie
-kompatybilna. Celem jest próba emulacji wygl±du i zachowania GUI
+%description -l pl.UTF-8
+neXtaw to zamiennik biblioteki zestawu widgetÃ³w Athena (libXaw). Jest
+oparty na Xaw3d Kaleba Keithleya i jest z niÄ… prawie w 100% wstecznie
+kompatybilna. Celem jest prÃ³ba emulacji wyglÄ…du i zachowania GUI
 N*XTSTEP.
 
 %package devel
 Summary:	Header files for neXtaw library
-Summary(pl):	Pliki nag³ówkowe biblioteki neXtaw
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki neXtaw
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for neXtaw library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki neXtaw.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki neXtaw.
 
 %package static
 Summary:	Static neXtaw library
-Summary(pl):	Statyczna biblioteka neXtaw
+Summary(pl.UTF-8):   Statyczna biblioteka neXtaw
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static neXtaw library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka neXtaw.
 
 %prep

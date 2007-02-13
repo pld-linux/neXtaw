@@ -1,5 +1,5 @@
 Summary:	neXtaw - a replacement library for the Athena
-Summary(pl.UTF-8):   neXtaw - zamiennik biblioteki Athena
+Summary(pl.UTF-8):	neXtaw - zamiennik biblioteki Athena
 Name:		neXtaw
 Version:	0.15.1
 Release:	0.1
@@ -25,7 +25,7 @@ N*XTSTEP.
 
 %package devel
 Summary:	Header files for neXtaw library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki neXtaw
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki neXtaw
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -37,7 +37,7 @@ Pliki nagłówkowe biblioteki neXtaw.
 
 %package static
 Summary:	Static neXtaw library
-Summary(pl.UTF-8):   Statyczna biblioteka neXtaw
+Summary(pl.UTF-8):	Statyczna biblioteka neXtaw
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 

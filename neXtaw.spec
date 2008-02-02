@@ -6,6 +6,7 @@ Release:	0.1
 License:	GPL-like
 Group:		Libraries
 Source0:	http://siag.nu/pub/neXtaw/%{name}-%{version}.tar.gz
+# Source0-md5:	1c9cbcef735d8e26f3e48bd529aca6a7
 URL:		http://siag.nu/neXtaw/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

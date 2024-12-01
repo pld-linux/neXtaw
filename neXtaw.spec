@@ -7,6 +7,7 @@ License:	MIT
 Group:		Libraries
 Source0:	http://siag.nu/pub/neXtaw/%{name}-%{version}.tar.gz
 # Source0-md5:	1c9cbcef735d8e26f3e48bd529aca6a7
+Patch0:		%{name}-build.patch
 URL:		http://siag.nu/neXtaw/
 BuildRequires:	bison
 BuildRequires:	flex
@@ -58,6 +59,13 @@ Statyczna biblioteka neXtaw.
 
 %prep
 %setup -q
+%patch0 -p1
+
+# force bison skeleton update
+%{__rm} X11/neXtaw/laygram.c
+
+# force flex skeleton update
+%{__rm} X11/neXtaw/laylex.c
 
 install -d app-defaults-examples
 cp -p doc/app-defaults/* app-defaults-examples

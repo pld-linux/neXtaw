@@ -1,0 +1,46 @@
+--- neXtaw-0.15.1/X11/neXtaw/XawIm.c.orig	2003-08-24 08:24:13.000000000 +0200
++++ neXtaw-0.15.1/X11/neXtaw/XawIm.c	2024-12-01 13:44:14.476426813 +0100
+@@ -62,6 +62,7 @@ in this Software without prior written a
+ #include <X11/Xos.h>
+ #include <X11/Xfuncs.h>
+ #include <X11/ShellP.h>
++#include <X11/ResourceI.h>
+ #include "TextP.h"
+ #include "MultiSrc.h"
+ #include "MultiSinkP.h"
+#--- neXtaw-0.15.1/X11/neXtaw/laygram.h.orig	2024-12-01 13:56:43.584091157 +0100
+#+++ neXtaw-0.15.1/X11/neXtaw/laygram.h	2024-12-01 18:24:05.493681525 +0100
+#@@ -32,3 +32,5 @@ typedef union {
+#     Operator	    oval;
+# } YYSTYPE;
+# extern YYSTYPE LayYYlval;
+#+extern int LayYYlex (void);
+#+extern int LayYYerror (char *s);
+--- neXtaw-0.15.1/X11/neXtaw/laygram.y.orig	2003-01-15 16:50:49.000000000 +0100
++++ neXtaw-0.15.1/X11/neXtaw/laygram.y	2024-12-01 18:46:32.231476775 +0100
+@@ -9,6 +9,8 @@
+ #include    <X11/Xmu/Misc.h>
+ #include    <X11/Xmu/Converters.h>
+ #include    "LayoutP.h"
++extern int LayYYlex (void);
++extern int LayYYerror (char *s);
+ 
+ static LayoutPtr    *dest;
+ 
+--- neXtaw-0.15.1/X11/neXtaw/laylex.l.orig	2003-01-15 16:50:49.000000000 +0100
++++ neXtaw-0.15.1/X11/neXtaw/laylex.l	2024-12-01 19:13:22.294128899 +0100
+@@ -86,12 +86,14 @@ count (s, c)
+     return i;
+ }
+ 
++void
+ yysetsource(s)
+     char    *s;
+ {
+     yysourcebase = yysource = s;
+ }
+ 
++void
+ yyerror(s)
+     char    *s;
+ {

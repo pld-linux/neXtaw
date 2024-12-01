@@ -2,15 +2,19 @@ Summary:	neXtaw - a replacement library for the Athena
 Summary(pl.UTF-8):	neXtaw - zamiennik biblioteki Athena
 Name:		neXtaw
 Version:	0.15.1
-Release:	0.1
-License:	GPL-like
+Release:	1
+License:	MIT
 Group:		Libraries
 Source0:	http://siag.nu/pub/neXtaw/%{name}-%{version}.tar.gz
 # Source0-md5:	1c9cbcef735d8e26f3e48bd529aca6a7
 URL:		http://siag.nu/neXtaw/
+BuildRequires:	bison
+BuildRequires:	flex
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXmu-devel
+BuildRequires:	xorg-lib-libXt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_xincludedir	/usr/X11R6/include
 
 %description
 neXtaw is a replacement library for the Athena (libXaw) widget set. It
@@ -29,6 +33,10 @@ Summary:	Header files for neXtaw library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki neXtaw
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	xorg-lib-libX11-devel
+Requires:	xorg-lib-libXext-devel
+Requires:	xorg-lib-libXmu-devel
+Requires:	xorg-lib-libXt-devel
 
 %description devel
 Header files for neXtaw library.
@@ -51,8 +59,13 @@ Statyczna biblioteka neXtaw.
 %prep
 %setup -q
 
+install -d app-defaults-examples
+cp -p doc/app-defaults/* app-defaults-examples
+%{__rm} app-defaults-examples/Makefile*
+
 %build
-%configure
+%configure \
+	LIBS="-lXt -lX11"
 %{__make}
 
 %install
@@ -60,9 +73,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_xincludedir}
-mv $RPM_BUILD_ROOT%{_includedir}/X11 $RPM_BUILD_ROOT%{_xincludedir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -72,16 +82,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog README TODO doc/CHANGES doc/FAQ doc/README.XAW3D
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%doc AUTHORS COPYING ChangeLog README TODO doc/{CHANGES,FAQ,README.XAW3D} app-defaults-examples
+%attr(755,root,root) %{_libdir}/libneXtaw.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libneXtaw.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/app-defaults/*
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_xincludedir}/X11/neXtaw
+%attr(755,root,root) %{_libdir}/libneXtaw.so
+%{_libdir}/libneXtaw.la
+%{_includedir}/X11/neXtaw
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libneXtaw.a
